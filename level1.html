@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+canvas
+{
+	background-color:#f1f1f1;
+}
+
+</style>
+</head>
+
+
+<body onload="startGame()">
+
+<script>
+
+var block = [];
+
+function startGame()
+{
+	myGameArea.start();
+	block.push(new component(320 , 30 , "red" , 0 , 0));
+	block.push( new component(120 , 30 , "red"  , 380  , 0));
+	block.push(new component(30 , 470 , "red" , 0 , 30));	
+	block.push(new component(50 , 30 , "red" , 30 , 70));
+	block.push(new component(30 , 200 , "red" , 120 , 30));
+	block.push(new component(40 , 30 , "red" , 80 , 140));
+	block.push(new component(120 , 30 , "red" , 120,200));
+	block.push(new component(30 , 60 , "red" , 210 , 140));
+	block.push(new component(70 , 30 , "red" , 190 , 70));
+	block.push(new component(30 , 60 , "red" , 290 , 30));
+	block.push(new component(80 , 30 , "red" , 310 , 60));
+	block.push(new component(30 , 470 , "red" , 470 , 30));
+	block.push(new component(40 , 30 , "red" , 30 , 200));
+	block.push(new component(70 , 30 , "red" , 30 , 270));
+	block.push(new component(30 , 30 , "red" , 100 , 270));
+	block.push(new component(90 , 30 , "red" , 170 , 270));
+	block.push(new component( 30 , 70, "red" , 230 , 300));
+	block.push(new component(110 , 30 , "red" , 120 , 340));
+	block.push(new component(30 , 90 , "red" , 120 , 340));
+	block.push(new component( 30, 60 ,"red" , 30 , 340));
+	block.push(new component(260 , 30 , "red" , 30,470));
+	block.push(new component(190 , 30 ,"red" , 340 , 470)); 
+	block.push(new component(30 , 100 ,"red" , 240 , 400));
+	block.push(new component(30 , 50 , "red" , 170 , 430));
+	block.push(new component(50 , 40 , "red" , 30 , 430));
+	block.push(new component(30,80,"red" , 300 , 140));
+	block.push(new component( 60 , 30 , "red" , 270 , 400));
+	block.push(new component(30 , 50 , "red" , 300 , 350)); 
+	block.push(new component(50 , 30 , "red" , 330 , 350));
+	block.push(new component(30 , 50 , "red" , 350 , 310));
+	block.push(new component(30 , 60 , "red" , 290 , 250));
+	block.push(new component(70 , 30 , "red" , 310 , 250));
+	block.push(new component(30 , 70 , "red" , 350 , 120));
+	block.push(new component(50 , 30 , "red" , 380 , 120));
+	block.push(new component(30 , 70 , "red" , 400 , 150));
+	block.push(new component(50 , 30 , "red" , 420 , 190));
+	block.push(new component(30 , 100 , "red" , 410 , 250));
+	block.push(new component(30,30,"red" , 440 , 320));
+	block.push(new component(80 , 30 , "red" , 390 , 410));
+
+	usertoken = new component( 20 , 20 , "black" ,  300 , 470);
+	
+}
+
+var myGameArea = 
+{
+	canvas : document.createElement("canvas"),
+	start : function()
+	{
+		this.canvas.width= 500;
+		this.canvas.height = 500;
+		this.context = this.canvas.getContext("2d");
+		document.body.insertBefore(this.canvas , document.body.childNodes[0]);
+		this.interval = setInterval(updateGameArea , 20);
+
+	window.addEventListener('keydown' , function(e)
+	{
+		myGameArea.key = e.keyCode;
+	})
+	window.addEventListener('keyup' , function(e)
+	{
+		myGameArea.key = false;
+	})
+
+	},
+
+	clear : function()
+	{
+		this.context.clearRect( 0 , 0 , this.canvas.width , this.canvas.height);
+	},
+
+	stop : function()
+	{
+		clearInterval(this.interval);
+		
+	}
+}
+
+function component(width , height , color , x ,y , type)
+{
+	this.type = type;
+	this.width = width;
+	this.height = height;
+	this.x = x;
+	this.y=y;
+	this.update = function()
+	{
+		ctx = myGameArea.context;
+		if(type=="image")
+		{
+			this.image = new Image();
+			this.image.src = color;
+		}
+		else
+		{
+		ctx.fillStyle = color;
+		ctx.fillRect(this.x , this.y , this.width , this.height);
+		}
+	}
+
+	this.crashWith = function(other)
+	{
+		var myl = this.x;
+		var myr = this.x + (this.width);
+		var myt = this.y;
+		var myb = this.y + (this.height);
+		
+		var otherl = other.x;
+		var otherr = other.x + (other.width);
+		var othert = other.y;
+		var otherb = other.y + (other.height);
+
+		var crash = true;
+
+		if((myb < othert) || (myt > otherb) || (myr <otherl) || (myl>otherr))
+		{
+			crash = false;
+		}
+		
+		return crash;
+	}
+}
+
+function updateGameArea()
+{
+	myGameArea.clear();
+	for(i=0;i<block.length ; i=i+1)
+	{
+		if(usertoken.crashWith(block[i]))
+		{
+			myGameArea.stop();
+			window.open("gameover.html" );
+			window.close();
+			return;
+		}
+	}
+	if(usertoken.x >= 320 && usertoken.x <= 380 && usertoken.y >=0 && usertoken.y<=30)
+	{
+		window.open("levelcomplete.html");
+		window.close();
+		return;
+	}
+	if ( myGameArea.key && myGameArea.key == 37)
+	{
+		usertoken.x = usertoken.x -1;
+	}
+	if( myGameArea.key && myGameArea.key==39)
+	{
+		usertoken.x = usertoken.x + 1;
+	}
+	if( myGameArea.key && myGameArea.key == 38)
+	{
+		usertoken.y = usertoken.y - 1;	
+	}
+	if( myGameArea.key && myGameArea.key == 40)
+	{
+		usertoken.y = usertoken.y + 1;
+	}
+	for(i=0;i<block.length;i++)
+		block[i].update();
+	usertoken.update();
+}
+
+
+</script>
+</body>

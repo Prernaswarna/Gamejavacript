@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+canvas
+{
+	background-color:#f1f1f1;
+}
+
+</style>
+</head>
+
+
+<body onload="startGame()">
+
+<script>
+
+var block = [];
+
+function startGame()
+{
+	myGameArea.start();
+	
+	block.push(new component(500 , 10, "black" , 40 , 0));
+	block.push(new component(10 , 500 , "black" , 0 , 0));
+	block.push(new component(10 , 30 , "black" , 60 , 10));
+	block.push(new component(40 , 10 , "black" , 60 , 40));
+	block.push(new component(10 , 50 , "black" , 90, 40));
+	block.push(new component(210 , 10 , "black" , 90, 90));
+	block.push(new component(80 , 10 , "black" , 120 , 60));
+	block.push(new component(10 , 30 , "black " , 120 , 30));
+	block.push(new component(110 , 10 , "black" , 120 , 30));
+	block.push(new component(10 , 60 , "black" , 220 , 30));
+	block.push(new component(10 , 60 , "black" , 250 , 10));
+	block.push(new component(10 , 10 , "black" , 260 , 60));
+	block.push(new component(10 , 50 , "black" , 290 , 40));
+	block.push(new component(20 , 10 , "black" , 280 , 30));
+	block.push(new component(10 , 90 , "black" , 330 , 10));
+	block.push(new component(30 , 10 , "black" , 320 , 90));
+	block.push(new component(10 , 50 , "black" , 360 , 30));
+	block.push(new component(40 , 10  ,"black" , 370 , 30));
+	block.push(new component(10 , 50 , "black" , 400 , 40));
+	block.push(new component(50 , 10 , "black" , 410 , 80));
+	block.push(new component(10 , 20 , "black" , 420 , 10));
+	block.push(new component(10 , 50 , "black" , 440 , 10));
+	block.push(new component(10 , 50 , "black" , 470 , 40));
+	block.push(new component(10 , 10  , "black" , 480 , 80));
+	block.push(new component(10 , 500 , "black" , 490 , 0));
+	block.push(new component(10 , 150 , "black" , 20 , 30));
+	block.push(new component(10 , 10 , "black" , 10 , 170));
+	block.push(new component(40 , 10 ,"black" , 30 , 60));
+	block.push(new component(20 , 10, "black" , 30 , 110));
+	block.push(new component(30 , 10 , "black" , 40 , 90));
+	block.push(new component(10 , 50 , "black" ,  60 , 100));
+	block.push(new component(120 , 10 , "black" , 50 , 150));
+	block.push(new component(10 , 40 , "black" , 80 , 110));
+	block.push(new component(10 , 40 , "black" , 110 , 100));
+	
+	block.push(new component(10 , 20 , "black" , 150 , 130));
+	block.push(new component(30 , 10 , "black" , 160 , 130));
+	block.push(new component(10 , 40 , "black" , 180 , 140));
+	block.push(new component(10 , 70 , "black" , 210 , 100));
+	block.push(new component(70 , 10 , "black" , 220 , 140));
+	block.push(new component(10 , 40 , "black" , 290 , 110));
+	block.push(new component(100 , 10 , "black" , 300 , 110));
+	block.push(new component(100 , 10 , "black" , 340 , 140));
+	block.push(new component(10 , 30 , "black" , 410 , 110));
+	block.push(new component(100 , 10 , "black" , 420 , 110));
+	block.push(new component(10 , 300 , "black" , 40 , 200));
+
+	block.push(new component(450 , 10 , "black" , 10 , 490));
+	block.push(new component(20 , 10 , "black" , 10 , 230));
+	block.push(new component(20 , 10 , "black" , 20 , 270));
+	block.push(new component(10 , 40 ,"black" , 20 , 280));
+	block.push(new component(30 , 10 , "black" , 20 , 350));
+	block.push(new component(20 , 10 , "black" , 10 , 390));
+	block.push(new component(10 , 50 , "black" , 20 , 430));
+	block.push(new component(10, 10 , "black" , 30 , 470));
+	
+	block.push(new component(10 , 220 , "black" , 70 , 250));
+	block.push(new component(40, 10, "black" , 40 , 220));
+	block.push(new component(30 , 10 , "black" , 70 , 250));
+	block.push(new component(10 , 70 , "black" , 100 , 190));
+	block.push(new component(40 , 10 , "black" , 110 , 190));
+	block.push(new component(10 , 40 , "black" , 150 , 160));
+	block.push(new component(10 , 100 , "black" , 130 , 220));
+	block.push(new component(40 , 10 , "black" , 100 , 280));
+	block.push(new component(10 , 30 , "black" , 100 , 290));
+	block.push(new component(60 , 10 , "black" , 140 , 310));
+	block.push(new component(10 , 30 , "black" , 190 , 280));
+	block.push(new component(30 , 10 , "black" , 160 , 280));
+	block.push(new component(10 , 40 , "black" , 160 , 240));
+
+	block.push(new component(10 , 60 , "black" , 180 , 200));
+	block.push(new component(20 , 10 , "black" , 190 , 210));
+	block.push(new component(20 , 10 , "black" , 200 , 240));
+	block.push(new component(10 , 90 , "black" , 220 , 190));
+	block.push(new component(90 , 10  , "black" , 230 , 190));
+	block.push(new component(10 , 60 , "black" , 320 , 160));
+	block.push(new component(10 , 90 , "black" , 350 , 150)); 
+	block.push(new component(60 , 10 , "black" , 360 , 200));
+	block.push(new component(10 , 30 , "black" , 420 , 200));
+	block.push(new component(30 , 10 , "black" , 430 , 220));
+	block.push(new component(10 , 90 , "black" , 450 , 180));
+
+
+
+	block.push(new component(50 , 10 , "black" , 380 , 170));
+	block.push(new component(10 , 10 , "black" , 420 , 160));
+	block.push(new component(60 , 10 , "black" , 430 , 160));
+	
+
+	block.push(new component(50 , 10 , "black" , 80 , 460));
+	block.push(new component(10 , 20 , "black" , 120 , 440));
+	block.push(new component(20 , 10 , "black" , 130 , 440));
+	block.push(new component(10 , 20 , "black" , 140 , 450));
+	block.push(new component(90 , 10 , "black" , 80 , 410));
+	block.push(new component(10 , 90 , "black" , 170 , 410));
+	block.push(new component(10 , 20 , "black" , 90 , 420));
+
+
+	block.push(new component(10 , 60 , "black" , 150 , 320));
+	block.push(new component(50 , 10 , "black" , 80 , 340));
+	block.push(new component(10 , 20 , "black" , 90 , 360));
+	block.push(new component(30 , 10 , "black" , 100 , 370));
+	block.push(new component(10 , 20 , "black" , 120 , 380));
+	block.push(new component(70 , 10 , "black" , 130 , 390));
+
+
+	block.push(new component(10 , 100 , "black" , 250 , 220));
+	block.push(new component(50 , 10  ,"black" , 260 , 250));
+	block.push(new component(10 , 20 , "black" , 300 , 260));
+	block.push(new component(60 , 10 , "black" , 310 , 270));
+	block.push(new component(10 , 30 , "black" , 360 , 280));
+	block.push(new component(60 , 10 , "black" , 370, 300));
+	block.push(new component(100 , 10 , "black" , 400 , 280));
+	block.push(new component(10 , 50 , "black" , 380 , 210));
+
+
+	block.push(new component(120 , 10 , "black" , 180 , 340));
+	block.push(new component(10 , 70 , "black" , 280 , 280));
+	block.push(new component(40 , 10 , "black" , 180 , 370));
+	block.push(new component(10 , 50 , "black" , 210 , 380));
+	block.push(new component(30 , 10 , "black" , 190 , 420));
+	
+	block.push(new component(10 , 100 , "black" , 240 , 370));
+	block.push(new component(50 , 10 , "black" , 190 , 450));
+	block.push(new component(70 , 10 , "black" , 250 , 370));
+	block.push(new component(10 , 70 , "black" , 310 , 300));
+
+
+	block.push(new component(10 , 60 , "black" , 390 , 310));
+	block.push(new component(70 , 10 , "black" , 340 , 340));
+	block.push(new component(10 , 20 , "black" , 340 , 360));
+	block.push(new component(90 , 10 , "black" , 340 , 380));
+	block.push(new component(10 , 60 , "black" , 420 , 320));
+	block.push(new component(60 , 10 , "black" , 430 , 320));
+
+
+	block.push(new component(10 , 90 , "black" , 270 , 410));
+	block.push(new component(70 , 10 , "black" , 280 , 410));
+	block.push(new component(10 , 30 , "black" , 340 , 420));
+	block.push(new component(30 , 10 , "black" , 310 , 440));
+	block.push(new component(10 , 30 ,"black" , 340 , 460));
+	block.push(new component(30 , 10 , "black" , 350 , 460));
+	block.push(new component(10 , 50 , "black" , 370 , 410));
+	block.push(new component(10 , 70 , "black" , 400 , 420));
+	block.push(new component(40 , 10 , "black" , 450 , 350));
+	block.push(new component(10 , 40 , "black" , 450 , 360));
+	block.push(new component(50 , 10 , "black" , 440 , 430));
+	block.push(new component(10 , 30 , "black" , 440 , 440));
+	
+	
+
+	usertoken = new component( 7 , 7 , "red" ,  470 , 490);
+	
+}
+
+var myGameArea = 
+{
+	canvas : document.createElement("canvas"),
+	start : function()
+	{
+		this.canvas.width= 500;
+		this.canvas.height = 500;
+		this.context = this.canvas.getContext("2d");
+		document.body.insertBefore(this.canvas , document.body.childNodes[0]);
+		this.interval = setInterval(updateGameArea , 20);
+
+	window.addEventListener('keydown' , function(e)
+	{
+		myGameArea.key = e.keyCode;
+	})
+	window.addEventListener('keyup' , function(e)
+	{
+		myGameArea.key = false;
+	})
+
+	},
+
+	clear : function()
+	{
+		this.context.clearRect( 0 , 0 , this.canvas.width , this.canvas.height);
+	},
+
+	stop : function()
+	{
+		clearInterval(this.interval);
+		
+	}
+}
+
+function component(width , height , color , x ,y , type)
+{
+	this.type = type;
+	this.width = width;
+	this.height = height;
+	this.x = x;
+	this.y=y;
+	this.update = function()
+	{
+		ctx = myGameArea.context;
+		if(type=="image")
+		{
+			this.image = new Image();
+			this.image.src = color;
+		}
+		else
+		{
+		ctx.fillStyle = color;
+		ctx.fillRect(this.x , this.y , this.width , this.height);
+		}
+	}
+
+	this.crashWith = function(other)
+	{
+		var myl = this.x;
+		var myr = this.x + (this.width);
+		var myt = this.y;
+		var myb = this.y + (this.height);
+		
+		var otherl = other.x;
+		var otherr = other.x + (other.width);
+		var othert = other.y;
+		var otherb = other.y + (other.height);
+
+		var crash = true;
+
+		if((myb < othert) || (myt > otherb) || (myr <otherl) || (myl>otherr))
+		{
+			crash = false;
+		}
+		
+		return crash;
+	}
+}
+
+function updateGameArea()
+{
+	myGameArea.clear();
+	for(i=0;i<block.length ; i=i+1)
+	{
+		if(usertoken.crashWith(block[i]))
+		{
+			myGameArea.stop();
+			window.open("gameover.html" );
+			window.close();
+			return;
+		}
+	}
+	if(usertoken.x >= 10 && usertoken.x <= 50 && usertoken.y >=0 && usertoken.y<=30)
+	{
+		window.open("levelcomplete.html");
+		window.close();
+		return;
+	}
+	if ( myGameArea.key && myGameArea.key == 37)
+	{
+		usertoken.x = usertoken.x -1;
+	}
+	if( myGameArea.key && myGameArea.key==39)
+	{
+		usertoken.x = usertoken.x + 1;
+	}
+	if( myGameArea.key && myGameArea.key == 38)
+	{
+		usertoken.y = usertoken.y - 1;	
+	}
+	if( myGameArea.key && myGameArea.key == 40)
+	{
+		usertoken.y = usertoken.y + 1;
+	}
+	for(i=0;i<block.length;i++)
+		block[i].update();
+	usertoken.update();
+}
+
+
+</script>
+</body>
